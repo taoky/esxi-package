@@ -1,0 +1,23 @@
+<vib version="5.0">
+   <type>bootbank</type>
+   <name>RunnerD</name>
+   <version>1.3.3-8</version>
+   <vendor>taoky</vendor>
+   <summary>RunnerD for ESXi 5.x and 6.0</summary>
+   <description>RunnerD for ESXi 5.x and 6.0</description>
+   <relationships>
+      <depends/><conflicts/><replaces/><provides/><compatibleWith/>
+   </relationships>
+   <system-requires>
+      <maintenance-mode>false</maintenance-mode>
+   </system-requires>
+   <acceptance-level>accepted</acceptance-level>
+   <live-install-allowed>true</live-install-allowed>
+   <live-remove-allowed>true</live-remove-allowed>
+   <cimom-restart>false</cimom-restart>
+   <stateless-ready>true</stateless-ready>
+   <overlay>false</overlay>
+   <payloads>
+      <payload name="RunnerD" type="tgz"></payload>
+   </payloads>
+</vib>
