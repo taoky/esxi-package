@@ -16,7 +16,7 @@ esxcli software vib install --no-sig-check -v /tmp/RunnerD.vib
 
 Then configure the service by editing `/etc/runner.config`:
 
-```toml
+```
 [runner]
 cmd = /opt/lsi/MegaCLI/MegaCli -PDlist -aALL
 cwd = /opt/lsi/MegaCLI/
