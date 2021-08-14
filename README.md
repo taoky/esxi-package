@@ -75,3 +75,9 @@ esxcli software vib remove --vibname=RunnerD
    2. <https://web.archive.org/web/20131017130434/http://www.jejik.com/articles/2007/02/a_simple_unix_linux_daemon_in_python/>
 3. The removed Vib Author page in Internet Archive:
    1. <https://web.archive.org/web/20161228164601/https://labs.vmware.com/flings/vib-author>
+
+## Appendix: Other programming languages on ESXi 6.0
+
+- C/C++: Static binary compiled on CentOS 3.9 can be executed.
+- Rust: Binary built with `i686-unknown-linux-musl` and `x86_64-unknown-linux-musl` can be executed. **However, it will segfault when creating threads.**
+- Shell scripts: The busybox on ESXi 6.0 is too old and missing a lot of applets thus I don't recommend using it to write complex scripts.
