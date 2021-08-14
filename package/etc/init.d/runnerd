@@ -1,0 +1,96 @@
+#!/bin/sh
+#
+# runnerd:
+#   Start and stop the RUNNERD daemon
+#
+# chkconfig: on 90 10
+#
+
+PROCD="/bin/runner/server.py"
+PIDFILE="/tmp/runner.pid"
+
+export PATH=/bin:/sbin
+
+#
+# Sanity check
+#
+[ -x "${PROCD}" ] || exit 0
+
+#
+# Log action
+#
+runnerd_log() {
+   echo "${1}"
+   logger runnerd "${1}"
+}
+
+#
+# Start runnerd
+#
+runnerd_start() {
+   runnerd_log "Starting runnerd"
+
+   if [ -f "$PIDFILE" ] ; then
+      runnerd_log "$PIDFILE exists. Is it running?"
+      return 1
+   fi
+
+   "${PROCD}" start
+}
+
+#
+# Stop runnerd
+#
+runnerd_stop() {
+   runnerd_log "Stopping runnerd"
+
+   if [ ! -f "$PIDFILE" ] ; then
+      return 1
+   fi
+
+   "${PROCD}" stop
+ 
+   # Wait for processes to terminate properly before checking status:
+   sleep 1
+   
+   [ ! -f "$PIDFILE" ]
+}
+
+#
+# Process comand line options
+#
+case "${1}" in
+   start)
+      runnerd_start
+   ;;
+
+   stop)
+      runnerd_stop
+   ;;
+
+   status)
+      if [ -f "$PIDFILE" ] ; then
+         echo "runnerd is running"
+         exit 0
+      else
+         echo "runnerd is not running"
+         exit 3
+      fi
+   ;;
+
+   restart)
+      runnerd_stop
+
+      # wait till all instances have stopped
+      while [ -f "$PIDFILE" ] ; do
+         sleep 1
+      done
+
+      runnerd_start
+   ;;
+
+   *)
+      echo "Usage: $(basename "$0") {start|stop|status|restart}"
+      exit 1
+   ;;
+esac

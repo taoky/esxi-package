@@ -1,0 +1,14 @@
+<!-- Firewall configuration information for RunnerD -->
+<ConfigRoot>
+  <service id='0000'>
+      <id>RunnerD</id>
+      <rule id='0000'>
+          <direction>inbound</direction>
+          <protocol>tcp</protocol>
+          <porttype>dst</porttype>
+          <port>8888</port>
+      </rule>
+      <enabled>true</enabled>
+      <required>false</required>
+  </service>
+</ConfigRoot>

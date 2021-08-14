@@ -1,0 +1,9 @@
+<ConfigRoot>
+   <service id="0000">
+      <id>runnerd</id>
+      <required>false</required>
+      <ruleset>RunnerD</ruleset>
+      <packagename>RunnerD</packagename>
+      <packagedescription>This VIB includes the RunnerD Daemon.</packagedescription>
+   </service>
+</ConfigRoot>
